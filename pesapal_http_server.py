@@ -5,10 +5,6 @@ PesapalHTTP - HTTP Server from Scratch
 A complete HTTP server implementation built from scratch in Python without
 using external libraries for HTTP parsing or response generation.
 
-Created for Pesapal internship assessment.
-Author: Collins Nyagaka
-Date: September 2025
-
 Features:
 - Parses HTTP requests from raw bytes
 - Supports HTTP/1.0 and HTTP/1.1
