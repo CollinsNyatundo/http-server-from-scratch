@@ -505,13 +505,13 @@ class HTTPServer:
             self.server_socket.listen(self.max_connections)
 
             self.running = True
-            logger.info(f"🚀 PesapalHTTP Server started on http://{self.host}:{self.port}")
-            logger.info("📝 Available endpoints:")
+            logger.info(f" PesapalHTTP Server started on http://{self.host}:{self.port}")
+            logger.info(" Available endpoints:")
             logger.info("   • GET  /       - Server information page")
             logger.info("   • GET  /health - Health check endpoint")  
             logger.info("   • POST /echo   - Echo request data")
             logger.info("   • GET  /demo   - API demonstration")
-            logger.info("⏹️  Press Ctrl+C to stop the server")
+            logger.info("  Press Ctrl+C to stop the server")
 
             # Set up signal handler for graceful shutdown
             signal.signal(signal.SIGINT, self._signal_handler)
@@ -521,7 +521,7 @@ class HTTPServer:
                 try:
                     # Accept client connection
                     client_socket, client_address = self.server_socket.accept()
-                    logger.info(f"📡 Connection from {client_address}")
+                    logger.info(f" Connection from {client_address}")
 
                     # Handle client in separate thread
                     client_thread = threading.Thread(
@@ -546,11 +546,11 @@ class HTTPServer:
         self.running = False
         if self.server_socket:
             self.server_socket.close()
-        logger.info("⏹️  Server stopped")
+        logger.info("  Server stopped")
 
     def _signal_handler(self, signum, frame):
         """Handle shutdown signal."""
-        logger.info("\n🛑 Received interrupt signal, shutting down gracefully...")
+        logger.info("\n Received interrupt signal, shutting down gracefully...")
         self.stop()
         sys.exit(0)
 
@@ -570,7 +570,7 @@ class HTTPServer:
                     # Parse request
                     request = parser.parse(data)
                     if request:
-                        logger.info(f"📨 {request.method} {request.path} from {client_address}")
+                        logger.info(f" {request.method} {request.path} from {client_address}")
 
                         # Process request and generate response
                         response = self._process_request(request)
@@ -579,7 +579,7 @@ class HTTPServer:
                         response_bytes = response.to_bytes()
                         client_socket.sendall(response_bytes)
 
-                        logger.info(f"📤 {response.status.code} {response.status.phrase} to {client_address}")
+                        logger.info(f" {response.status.code} {response.status.phrase} to {client_address}")
 
                         # For HTTP/1.0 or Connection: close, break after response
                         if (request.version == "HTTP/1.0" or 
@@ -590,15 +590,15 @@ class HTTPServer:
                         parser.reset()
 
                 except socket.timeout:
-                    logger.warning(f"⏰ Timeout for client {client_address}")
+                    logger.warning(f" Timeout for client {client_address}")
                     break
                 except ValueError as e:
-                    logger.warning(f"❌ Bad request from {client_address}: {e}")
+                    logger.warning(f" Bad request from {client_address}: {e}")
                     error_response = create_error_response(HTTPStatus.BAD_REQUEST, str(e))
                     client_socket.sendall(error_response.to_bytes())
                     break
                 except Exception as e:
-                    logger.error(f"💥 Error processing request from {client_address}: {e}")
+                    logger.error(f" Error processing request from {client_address}: {e}")
                     error_response = create_error_response(HTTPStatus.INTERNAL_SERVER_ERROR)
                     try:
                         client_socket.sendall(error_response.to_bytes())
@@ -611,7 +611,7 @@ class HTTPServer:
                 client_socket.close()
             except:
                 pass
-            logger.info(f"🔌 Connection closed for {client_address}")
+            logger.info(f" Connection closed for {client_address}")
 
     def _process_request(self, request: HTTPRequest) -> HTTPResponse:
         """Process HTTP request and return response."""
@@ -663,12 +663,12 @@ class HTTPServer:
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">🚀 PesapalHTTP</div>
+            <div class="logo"> PesapalHTTP</div>
             <div class="tagline">HTTP Server Built from Scratch</div>
         </div>
 
         <div class="info">
-            <h2>📊 Server Information</h2>
+            <h2> Server Information</h2>
             <div class="feature"><strong>Server:</strong> PesapalHTTP/1.0</div>
             <div class="feature"><strong>Language:</strong> Python 3 (no external HTTP libraries)</div>
             <div class="feature"><strong>Time:</strong> {time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime())}</div>
@@ -677,7 +677,7 @@ class HTTPServer:
         </div>
 
         <div class="request-info">
-            <h2>📨 Your Request Details</h2>
+            <h2> Your Request Details</h2>
             <pre>Method: {request.method}
 Path: {request.path}
 Version: {request.version}
@@ -689,7 +689,7 @@ Headers Count: {len(request.headers)}</pre>
         </div>
 
         <div class="endpoints">
-            <h2>🛠️ Available Endpoints</h2>
+            <h2> Available Endpoints</h2>
             <ul>
                 <li><strong>GET</strong> <a href="/">/ </a> - This server information page</li>
                 <li><strong>GET</strong> <a href="/health">/health</a> - Health check endpoint <span class="badge">JSON</span></li>
@@ -699,7 +699,7 @@ Headers Count: {len(request.headers)}</pre>
         </div>
 
         <div class="info">
-            <h2>✨ Key Features</h2>
+            <h2> Key Features</h2>
             <div class="feature">• <strong>Raw HTTP Parsing:</strong> Parses HTTP requests from raw bytes without external libraries</div>
             <div class="feature">• <strong>Standards Compliant:</strong> Follows RFC 7230 HTTP/1.1 specification</div>
             <div class="feature">• <strong>Robust Error Handling:</strong> Proper HTTP status codes and error responses</div>
@@ -789,12 +789,12 @@ Headers Count: {len(request.headers)}</pre>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🧪 PesapalHTTP API Demonstration</h1>
+            <h1> PesapalHTTP API Demonstration</h1>
             <p>Interactive testing of our HTTP server endpoints</p>
         </div>
 
         <div class="demo-section get-demo">
-            <h3>📥 GET /health - Health Check</h3>
+            <h3> GET /health - Health Check</h3>
             <p>Test the health endpoint to see server status and capabilities:</p>
             <button onclick="testHealth()">Test Health Endpoint</button>
             <div id="health-response" class="response-area" style="display:none;">
@@ -804,7 +804,7 @@ Headers Count: {len(request.headers)}</pre>
         </div>
 
         <div class="demo-section post-demo">
-            <h3>📤 POST /echo - Echo Request</h3>
+            <h3> POST /echo - Echo Request</h3>
             <p>Send JSON data to test request body parsing and echo functionality:</p>
             <textarea id="echo-input" placeholder="Enter JSON data to send...">{
   "name": "Collins Nyagaka",
@@ -822,7 +822,7 @@ Headers Count: {len(request.headers)}</pre>
         </div>
 
         <div class="demo-section">
-            <h3>🔧 Technical Details</h3>
+            <h3> Technical Details</h3>
             <p>This HTTP server demonstrates:</p>
             <ul>
                 <li><strong>Raw HTTP Parsing:</strong> Parses requests from raw socket bytes</li>
@@ -890,9 +890,9 @@ def main():
     try:
         server.start()
     except KeyboardInterrupt:
-        logger.info("\n🛑 Server interrupted by user")
+        logger.info("\n Server interrupted by user")
     except Exception as e:
-        logger.error(f"💥 Server error: {e}")
+        logger.error(f" Server error: {e}")
     finally:
         server.stop()
 
