@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 PesapalHTTP - HTTP Server from Scratch
-=====================================
 
 A complete HTTP server implementation built from scratch in Python without
 using external libraries for HTTP parsing or response generation.
@@ -550,7 +549,7 @@ class HTTPServer:
 
     def _signal_handler(self, signum, frame):
         """Handle shutdown signal."""
-        logger.info("\n Received interrupt signal, shutting down gracefully...")
+        logger.info("\n Received interrupt signal, shutting down gracefully")
         self.stop()
         sys.exit(0)
 
@@ -806,7 +805,7 @@ Headers Count: {len(request.headers)}</pre>
         <div class="demo-section post-demo">
             <h3> POST /echo - Echo Request</h3>
             <p>Send JSON data to test request body parsing and echo functionality:</p>
-            <textarea id="echo-input" placeholder="Enter JSON data to send...">{
+            <textarea id="echo-input" placeholder="Enter JSON data to send">{
   "name": "Collins Nyagaka",
   "position": "Software Engineer",
   "company": "Pesapal",
