@@ -1,0 +1,13 @@
+# PesapalHTTP Server Requirements
+# 
+# This HTTP server is built using only Python standard library
+# No external dependencies required!
+#
+# Tested with:
+# - Python 3.7+
+# - No additional packages needed
+#
+# To verify your Python version:
+# python --version
+#
+# This file exists for completeness but no pip install needed!
