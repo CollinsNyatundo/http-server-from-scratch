@@ -295,9 +295,4 @@ This project demonstrates understanding of:
 
 This project is created for educational purposes as part of the internship assessment. 
 
-GitHub: [Your GitHub Profile]  
 Email: cnyagakan@gmail.com
-
----
-
-*This HTTP server implementation showcases the ability to build complex systems from fundamental components, demonstrating both technical skills and software engineering best practices.*
